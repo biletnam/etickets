@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+ Route::get('/','Eventscontroller@cards');
+
 
 Auth::routes();
 
@@ -23,4 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //
 //});
 
+
 Route::resource('/events','Eventscontroller');
+
+Route::get('/browse','Eventscontroller@cards');
+Route::get('/logout','Eventscontroller@logout');

@@ -49,11 +49,11 @@
                                 <div class="field">
                                     <label for="email" class="label">Password Confirmation</label>
                                     <p class="control">
-                                        <input type="password" class="input {{$errors->has('password') ? 'is-danger' : ''}}" name="password" id="password" placeholder="confirm password" required>
+                                        <input type="password" class="input {{$errors->has('password') ? 'is-danger' : ''}}" name="confirmed" id="confirmed" placeholder="confirm password" required>
                                     </p>
                                     </p>
-                                    @if($errors->has('password'))
-                                        <p class="help is-danger">{{$errors->first('password')}}</p>
+                                    @if($errors->has('confirmed'))
+                                        <p class="help is-danger">{{$errors->first('confirmed')}}</p>
                                     @endif
                                 </div>
                             </div>  </div>

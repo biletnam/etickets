@@ -14067,6 +14067,10 @@ button.nav-item.is-active {
   padding-bottom: calc(0.75rem - 3px);
 }
 
+.nav {
+  background-color: whitesmoke;
+}
+
 .nav-item {
   padding-right: 1px;
 }

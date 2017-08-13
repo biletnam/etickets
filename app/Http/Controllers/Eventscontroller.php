@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\evedntsFormRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class Eventscontroller extends Controller
 {
@@ -13,9 +16,22 @@ class Eventscontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+        public function __construct()
+    {
+               $this->middleware('auth');
+
+    }
+
+
     public function index()
     {
+
+        $events = Event::orderBy('id','desc')->paginate(10);
+        return view('events.index')->withEvents($events);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +51,7 @@ class Eventscontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(evedntsFormRequest $request)
     {
         $this->validate($request,[
             'event_title'=>'required|max:255',
@@ -45,7 +61,7 @@ class Eventscontroller extends Controller
             'event_end'=>'required',
             'event_end_time'=>'required',
             'event_description'=>'required',
-            'org_name'=>'required',
+            'org_name'=>'required', 
             'event_type'=>'required',
             'event_topic'=>'required',
             'event_image'=>'required|image'
@@ -68,7 +84,7 @@ class Eventscontroller extends Controller
         $event->save();
 
         if($event->save()){
-            return redirect()->route('events.create');
+            return redirect()->route('events.index');
         } else{
             Session::flash('danger','sorry a problem occured while creating this Event.');
             return redirect()->route('events.create');
@@ -96,7 +112,9 @@ class Eventscontroller extends Controller
      */
     public function edit($id)
     {
-        //
+         $event =  Event::findOrFail($id);
+       return view("events.edit")->withEvent($event);
+
     }
 
     /**
@@ -108,7 +126,34 @@ class Eventscontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $this->validate($request,[
+
+        ]);
+        $image_file= $request->file('event_image');
+        $name = time().$image_file->getClientOriginalName();
+        $image_file->move('event-images',$name);
+        //$data = array_merge(['photo'=>"event-images/{$name}"]);
+
+
+        $event =  Event::findOrFail($id);
+        $event->event_title = $request->get('event_title');
+        $event->starts_at = $request->event_start;
+        $event->ends_at = $request->event_end;
+        $event->event_description = $request->event_description;
+        $event->event_type= $request->event_type;
+        $event->event_topic= $request->event_topic;
+        $event->organisers_name = $request->org_name;
+        $event->event_image=$name;
+        $event->save();
+
+        if($event->save()){
+            return redirect()->route('events.index');
+        } else{
+            Session::flash('danger','sorry a problem occured while creating this Event.');
+            return redirect()->route('events.edit');
+        }
+
+
     }
 
     /**
@@ -120,5 +165,18 @@ class Eventscontroller extends Controller
     public function destroy($id)
     {
         //
+    }
+
+         public function cards()
+    {
+        $events = Event::orderBy('id','desc')->paginate(10);
+        return view('events.all_events')->withEvents($events);
+    }
+
+        public function logout(){
+
+         Auth::logout();
+         return redirect()->route('home');
+
     }
 }
