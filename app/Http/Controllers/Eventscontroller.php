@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\evedntsFormRequest;
@@ -28,8 +29,9 @@ class Eventscontroller extends Controller
     public function index()
     {
 
-        $events = Event::orderBy('id','desc')->paginate(10);
-        return view('events.index')->withEvents($events);
+        $id = Auth::User()->id;
+        $events = Event::where('user_id',$id)->orderBy('id', 'desc')->paginate(10);
+        return view('events.index',compact('events'));
     }
     
 
@@ -74,6 +76,8 @@ class Eventscontroller extends Controller
 
         $event = new Event();
         $event->event_title = $request->event_title;
+        $event->user_id = Auth::User()->id;
+        $event->location = $request->event_location;
         $event->starts_at = $request->event_start;
         $event->ends_at = $request->event_end;
         $event->event_description = $request->event_description;

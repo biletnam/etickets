@@ -37,8 +37,9 @@
                                 <label for="event_start" class="label">Starts</label>
                                 <p class="control">
                                     <input type="date" class="input {{$errors->has('event_start') ? 'is-danger' : ''}}" name="event_start" id="event_start">
+                                <!--  <datepicker name="event_start" placeholder="Select Date" :config="{ dateFormat: 'd-m-Y', static: true }"></datepicker> -->                           
                                 </p>
-                                </p>
+
                                 @if($errors->has('event_start'))
                                     <p class="help is-danger">{{$errors->first('event_start')}}</p>
                                 @endif
@@ -48,8 +49,8 @@
                             <div class="field">
                                 <label for="event_start_time" class="label">time</label>
                                 <p class="control">
-                                    <input type="time" class="input {{$errors->has('event_start_time') ? 'is-danger' : ''}}" name="event_start_time" id="event_start_time">
-                                </p>
+                                    <input type="time" id="timepicker" class="input {{$errors->has('event_start_time') ? 'is-danger' : ''}}" name="event_start_time" id="event_start_time">
+
                                 </p>
                                 @if($errors->has('event_start_time'))
                                     <p class="help is-danger">{{$errors->first('event_start_time')}}</p>
@@ -63,7 +64,8 @@
                                 <label for="event_end" class="label">Ends</label>
                                 <p class="control">
                                     <input type="date" class="input {{$errors->has('event_end') ? 'is-danger' : ''}}" name="event_end" id="event_end">
-                                </p>
+                                <!--   <datepicker name="event_end" placeholder="Select Date" :config="{ dateFormat: 'd-m-Y', static: true }"></datepicker>
+ -->
                                 </p>
                                 @if($errors->has('event_end'))
                                     <p class="help is-danger">{{$errors->first('event_end')}}</p>

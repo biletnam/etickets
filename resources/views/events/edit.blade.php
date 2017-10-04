@@ -29,7 +29,7 @@
                     <div class="field">
                         <label for="event_location" class="label">Location</label>
                         <p class="control">
-                         <input type="text" name="event_location" id="event_location" class="input" value="">
+                         <input type="text" name="event_location" id="event_location" class="input" value="{{$event->location}}">
                         </p>
                         @if($errors->has('event_location'))
                             <p class="help is-danger">{{$errors->first('event_location')}}</p>

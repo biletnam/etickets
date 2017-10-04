@@ -10,4 +10,8 @@ class Event extends Model
         'event_title', 'starts_at', 'ends_at','event_description','event_type',
         'event_topic','organisers_name','event_image'
     ];
+
+public function User(){
+	return $this->belongsTo(User::class);
+}
 }

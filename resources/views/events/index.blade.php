@@ -12,8 +12,12 @@
 
 		</div>
 		<hr>
+	
 		<div class="card">
 		<div class="card-content">
+				@if ($events->isEmpty())
+    <p> There are no events Once you create them they will appear here.</p>
+        @else
 		<table class="table is-narrow">
 			<thead>
 				<tr>
@@ -22,14 +26,14 @@
 					<th>Title</th>
 					<th>Type</th>
 					<th>Topic</th>
+					<th>Location</th>
 					<th>Strats At</th>
 					<th>Ends At</th>
-				    <th>Org' Name</th>
-				    <th>Edit</th>
+				    <th>Organiser's Name</th>
+         			<th>Description</th>
+         			 <th>Edit</th>
 				    <th>Delete</th>
 
-{{-- 					<th>Description</th>
- --}}
 
 				</tr>
 				</thead>
@@ -42,12 +46,12 @@
 					<td>{{$event->event_title}}</td>
 					<td>{{$event->event_type}}</td>
 					<td>{{$event->event_topic}}</td>
+					<td>{{$event->location}}</td>
 					<td>{{$event->starts_at}}</td>
 					<td>{{$event->ends_at}}</td>
 					<td>{{$event->organisers_name}}</td>
-
-{{-- 					<td>{{$event->event_description}}</td>
- --}}					
+     				<td>{{$event->event_description}}</td>
+				
 
 					<td> <a class="button is-outlined is-primary" href="{{ route('events.edit',$event->id) }}">
 					<i class="fa fa-edit"></i></a></td>
@@ -58,7 +62,10 @@
 			    </tbody>
 		</table>
 		</div>
+
 		</div>
-	{{$events->links()}}
+		{{$events->links()}}
+		@endif
+
 </div>
 @endsection
