@@ -16295,6 +16295,15 @@ button.nav-item.is-active {
   margin-top: 30px;
 }
 
+.tiko {
+  margin-left: 5%;
+}
+
+.ticket {
+  margin-top: 5px;
+  margin-left: 5%;
+}
+
 .m-t-5 {
   margin-top: 5px !important;
 }

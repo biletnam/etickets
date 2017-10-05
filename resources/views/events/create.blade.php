@@ -13,6 +13,12 @@
             <div class="column is-two-thirds custom">
                 <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
                     {{csrf_field()}}
+
+<!--                     <h5 class="title"></h5>
+ -->                    <h4 class="title is-4">Event Details</h4>
+                        <hr class="m-t0">
+
+
                     <div class="field">
                         <label for="name" class="label">Event Title</label>
                         <p class="control">
@@ -114,7 +120,7 @@
                     <div class="field">
                         <label for="org_name" class="label">Organiser's  name</label>
                         <p class="control">
-                            <input type="text" class="input {{$errors->has('org_name') ? 'is-danger' : ''}}" name="org_name" id="org_name"  required>
+                            <input type="text" class="input {{$errors->has('org_name') ? 'is-danger' : ''}}" name="org_name" id="org_name" value="{{Auth::User()->name}}" required>
                         </p>
                         </p>
                         @if($errors->has('org_name'))
@@ -142,8 +148,53 @@
                         @endif
                     </div>
 
-                    <button class="button is-success m-t-15">Save Event</button>
-                    <button class="button is-success m-t-15">Make Live</button>
+                     <h4 class="title is-4">Create Tickets</h4>
+                     <hr class="m-t0">
+                     <div class="field tiko">
+                     <label for="event_type" class="label">What type of ticket would you like to start with?</label>
+                     
+                     <div class="modal " v-if="show_modal" @close="show_modal = false">
+                          <div class="modal-background"></div>
+                          <div class="modal-card ">
+                            <header class="modal-card-head">
+                              <p class="modal-card-title">Confirm ticket type deletion</p>
+                              <button class="delete" aria-label="close"></button>
+                            </header>
+                            <section class="modal-card-body">
+                            <h2>Are you sure you want to delete this ticket type?</h2>
+                            </section>
+                            <footer class="modal-card-foot">
+                              <button class="button is-success">Cancel</button>
+                              <button class="button is-danger">Delete</button>
+                            </footer>
+                          </div>
+                        </div>
+
+
+                     <table class="table" v-show="free">
+                      <tr>
+                      <th>Ticket name</th>
+                      <th>Quantity Available</th>
+                      <th>Price</th>
+                      <th>Actions</th></tr>
+
+        
+                          <th><input type="text" class="input {{$errors->has('ticket_name') ? 'is-danger' : ''}}" name="ticket_name" id="ticket_name" ></th>
+                          <td><input type="text" class="input {{$errors->has('event_type') ? 'is-danger' : ''}}" name="ticket_quantity" id="ticket_quantity" ></td>
+                          <td><input type="text" class="input {{$errors->has('event_type') ? 'is-danger' : ''}}" name="ticket_price" id="ticket_price" ></td>
+                          <td><a href="#"> <i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>&nbsp &nbsp
+                             <a @click = "show_modal= true"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>                           
+                         </td>
+                          </tr>
+                    </table>
+
+                     <a @click="free = !free" class="button is-primary is-outlined ticket "><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbspFree Ticket</a>
+                     <a @click="paid = !paid" class="button is-primary is-outlined ticket"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbspPaid Ticket</a>
+                 </div>
+
+                   
+                    <button class="button is-success m-t-15 is-outlined">Save Event</button>
+                    <button class="button is-success m-t-15 is-outlined">Make Live</button>
 
                 </form>
             </div>

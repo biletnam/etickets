@@ -22,10 +22,18 @@ Vue.use(Buefy);
 var app = new Vue({
 	el:'#app',
 	data:{
-		checked:false
+		checked:false,
+		free:false,
+		paid:false,
+		show_modal:false
 		},
 		  components: {
     Datepicker
+  },
+  methods:{
+  	toggle:function(){
+  		this.free = !this.free
+  	}
   }
 	
 });
