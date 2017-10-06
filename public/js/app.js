@@ -925,13 +925,13 @@ window.Vue = __webpack_require__(36);
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vuetify___default.a);
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
+
 var app = new Vue({
   el: '#app',
   data: {
     checked: false,
     free: false,
-    paid: false,
-    show_modal: false
+    paid: false
   },
   components: {
     Datepicker: __WEBPACK_IMPORTED_MODULE_1_vue_bulma_datepicker___default.a

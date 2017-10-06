@@ -50,7 +50,8 @@
 					<td>{{$event->starts_at}}</td>
 					<td>{{$event->ends_at}}</td>
 					<td>{{$event->organisers_name}}</td>
-     				<td>{{$event->event_description}}</td>
+     				<td>{{ $value = str_limit($event->event_description,70, $end = '......') }}</td>
+
 				
 
 					<td> <a class="button is-outlined is-primary" href="{{ route('events.edit',$event->id) }}">

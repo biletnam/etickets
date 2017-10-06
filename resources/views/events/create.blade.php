@@ -153,7 +153,7 @@
                      <div class="field tiko">
                      <label for="event_type" class="label">What type of ticket would you like to start with?</label>
                      
-                     <div class="modal " v-if="show_modal" @close="show_modal = false">
+                     <div class="modal" v-bind:class="{{is-active:show_modal}}">
                           <div class="modal-background"></div>
                           <div class="modal-card ">
                             <header class="modal-card-head">

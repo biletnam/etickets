@@ -19,13 +19,13 @@ Vue.use(Vuetify);
 
 
 Vue.use(Buefy);
+
 var app = new Vue({
 	el:'#app',
 	data:{
 		checked:false,
 		free:false,
-		paid:false,
-		show_modal:false
+		paid:false
 		},
 		  components: {
     Datepicker

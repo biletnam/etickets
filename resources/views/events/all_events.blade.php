@@ -15,30 +15,33 @@
 
        
 			
-				<div class="column is-one-third">
+				<div class="column is-one-quarter">
 
-   <div class="card">
-  <header class="card-header">
-    <p class="card-header-title">
-      {{$event->event_title }} 
+          <div class="card">
+  <div class="card-image">
+    <figure class="image 64x64px">
+       <img src="event-images/{{ $event->event_image }}"/>
 
-
-    </p>
-
-  </header>
-  <div class="card-content">
+    </figure>
+  </div>
+  <div class="card-content ">
     <div class="content">
-     {{$event->event_description}}
-    </div>
+      <p class="card_p"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp {{$event->starts_at}}</p>
+      <p class="card_p title is-6">{{$event->event_title}}</p>
+
+      <p class="card_p"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp{{$event->location}}</p>
+   </div>
   </div>
   <footer class="card-footer">
-    <a class="card-footer-item"><i class="fa fa-facebook" aria-hidden="true"></i>
-</a>
-    <a class="card-footer-item"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-    <a class="card-footer-item"><i class="fa fa-share" aria-hidden="true"></i>
-</a>
+    <p class="card-footer-item "> <a href="#"><span class="tag">Tech</span></a> &nbsp <a href="#"><span class="tag">Data</span></a> &nbsp  <a href="#"><span class="tag">Science</span></a></p>
+    <a href="#" class="card-footer-item"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a>
+    <a href="#" class="card-footer-item"><i class="fa fa-share" aria-hidden="true"></i></a>
   </footer>
+
 </div>
+
+
+
 </div>		 
 
 				   @endforeach
